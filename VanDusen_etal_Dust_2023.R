@@ -7,7 +7,10 @@ library(nortest)
 library(MixviR)
 
 
-#Download mutations associated with lineages of interest from outbreak.info database. Filtering for mutations that occur with a frequency of 0.75 in the lineage/sublineage.
+#Download mutations associated with lineages of interest from outbreak.info database. 
+#These mutations will be used as input in MixviR analyses.
+#Filtering for mutations that occur with a frequency of 0.75 in the lineage/sublineage.
+
 outbreakinfo::authenticateUser()
 
 # only considering Omicron lineage BA.1 here as the dust sampling only goes through early 2022.
@@ -412,6 +415,10 @@ ggsave(filename = "manuscript_figures/Figure2.pdf", device = "pdf")
 # Clinical (Saliva) vs Dust Data Comparison
 
 #Get estimated weekly lineage frequencies from saliva data (obtained from GISAID)
+#Data associated with samples beginning with the prefixes "20AM-", "21AM-", and "22AM-" (corresponding to data collected an uploaded to GISAID from OSU), were downloaded from GISAID in Nov 2022. 
+#These data represent all of the sequenced Covid samples from OSU in 2020, 2021, and 2022.
+#In total, data from 5,619 samples were downloaded. The data from the three years were combined and columns gisaid_epi_isl, date, pangolin_lineage, and GISAID_clade were retained as the file "OSU_saliva.csv".
+
 
 saliva_data <- read_csv("OSU_saliva.csv") %>%
   select(-1) %>%
